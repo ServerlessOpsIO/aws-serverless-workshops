@@ -123,7 +123,7 @@ source_profile = training-prime
 role_arn = arn:aws:iam::144121712529:role/OrganizationAccountAccessUserRole
 
 [training-prod]
-source_profile = serverlessops-prime
+source_profile = training-prime
 role_arn = arn:aws:iam::820506766567:role/OrganizationAccountAccessUserRole
 
 ```
