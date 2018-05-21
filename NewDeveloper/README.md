@@ -39,7 +39,7 @@ Our tech stack is as follows.
 
 ![Wild Rydes Web Application Architecture](images/wild-rydes.png)
 
-
+<!-- Don't need this.
 ### AWS environment
 Our cloud environment consists of three AWS accounts.  This allows us to segregate environments and limit the blast radius caused by mistakes.
 
@@ -47,12 +47,73 @@ They are:
 * __prime:__ Where user access to the environment is managed.
 * __prod:__ The production version of our platform used by our users.
 * __dev__: This is where the development version of our application resides along with individual developer instances of services.  The development environment should nearly resemble prod as the time between deploying to development and production should be minimal.  Changes laying around undeployed to prod aren’t doing users any good.
-
+-->
 
 ## Getting Started
+To prepare for this workshop, chooses from one of the options below for setting up your development environment.
 
-### Developer Laptop Setup
-Before starting this workshop ensure you have the following tools setup.
+* Docker Based Setup (Recommended)
+* Manual Setup
+
+### Docker Based Setup (Recommended)
+
+#### 1. Download and Install Docker.
+
+Download and install Docker CE from the following site if you do not already currently have it.
+
+* https://docs.docker.com/install/
+
+#### 2. Pull workshop container image.
+
+Execute the following command to pull the workshop container which has a fully configured environment.
+
+```
+docker pull serverlessops/training:latest
+```
+
+#### 3. Start And Configure Container.
+
+To start the container, run the following command
+
+```
+docker run -ti --rm serverlessops/training:latest
+```
+
+After you've started the container you'll be asked to fill in some workshop setup information.  Enter a username for the stage name, along with your AWS access and secret keys.  (If you're doing this as a part of a class you will have been provided these.)
+
+```
+Stage name: user0
+AWS Access Key ID [None]: |ACCESS_KEY_ID|
+AWS Secret Access Key [None]: |SECRET_ACCESS_KEY|
+Default region name [us-east-1]:
+Default output format [json]:
+```
+
+Run the following command and ensure you get back a similar response as below.  This indicates your credentials are properly configured.
+
+```
+$ aws sts get-caller-identity
+{
+    "UserId": "AROAI4AIGYLQKD6SGBBIE:botocore-session-1526934883",
+    "Account": "144121712529",
+    "Arn": "arn:aws:sts::144121712529:assumed-role/OrganizationAccountAccessUserRole/botocore-session-1526934883"
+}
+```
+
+#### 4. Working In The Container
+
+After configuration has been completed you will be placed in the `/workshop` directory inside the container.  All tools needed to complete the workshop are configured and provided.  Two editors are available for you to view and edit files.
+
+* nano
+* vim
+
+You're now ready to start the workshop!
+
+### Manual Setup
+This section covers manually setting up your development environment.  This should only be used if installing Docker is not possible or to understand configuring your own development environment for continuing to explore serverless after this workshop is completed.
+
+<details>
+<summary><strong>Manual Setup (expand for details)</strong></summary><p>
 
 #### __NodeJS / NPM__
 Our chosen tool for managing serverless systems is written in JavaScript so you will need a Node.JS runtime and package manager.  Please install by using one of the methods below.
@@ -144,6 +205,9 @@ $ git clone https://github.com/ServerlessOpsIO/aws-serverless-workshops.git
 $ cd aws-serverless-workshops
 $ git submodule init
 ```
+
+</p></details>
+
 
 <!--
 ## Modules
